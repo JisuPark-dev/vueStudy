@@ -1,11 +1,11 @@
 <template>
 
 <!-- 모달 창 ui -->
-<div class="black-bg" v-if="">
+<div class="black-bg" v-if="modalOpen == true">
   <div class="white-bg">
     <h4>상세페이지임</h4>
     <p>상세 페이지 내용임</p>
-
+    <button @click="modalOpen=false">닫기</button>
   </div>
 
 </div>
@@ -16,24 +16,30 @@
   </div>
   
 <!-- 상품 목록   -->
-  <div v-for="(product,i) in products" :key="i">
-    <img src="./assets/room1.jpeg" class="room-img">
-    <h4>{{ product }}</h4>
-    <p>{{ prices[i] }} 만원</p>  
+  <div v-for="(room,i) in rooms" :key="i">
+    <img :src="`${ room.image }`" class="room-img" @click="modalOpen=true">
+    <h4>{{ room.title }}</h4>
+    <p>{{ room.price }} 만원</p>  
+    <p>내용 : {{ room.content }} </p>  
     <button @click="increase(i)">허위매물 신고</button> <span> 신고수 {{ 신고수[i] }} 건</span>
   </div>  
 </template>
 
 <script>
+import rooms from "./assets/data";
+
+
 export default {
   name: 'App',
   data(){
     return {
-      modalOpen : true,
+      modalOpen : false,
       신고수 : [0,0,0],
       메뉴들 : ["Home","Shop","About"],
       prices : [1000,2000,3000],
-      products: ["역삼동 원룸","청호동 원룸","신림동 원룸"]
+      products: ["역삼동 원룸","청호동 원룸","신림동 원룸"],
+      rooms
+
     }
   },
   methods:{
