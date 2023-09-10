@@ -21,7 +21,7 @@
     <h4>{{ room.title }}</h4>
     <p>{{ room.price }} 만원</p>  
     <p>내용 : {{ room.content }} </p>  
-    <button @click="increase(i)">허위매물 신고</button> <span> 신고수 {{ 신고수[i] }} 건</span>
+    <button @click="room.Declaration++">허위매물 신고</button> <span> 신고수 {{ room.Declaration }} 건</span>
   </div>  
 </template>
 
@@ -36,15 +36,13 @@ export default {
       modalOpen : false,
       신고수 : [0,0,0],
       메뉴들 : ["Home","Shop","About"],
-      prices : [1000,2000,3000],
-      products: ["역삼동 원룸","청호동 원룸","신림동 원룸"],
-      rooms
+      rooms : rooms
 
     }
   },
   methods:{
-    increase(i){
-      this.신고수[i]+=1;
+    increase(){
+      rooms.Declaration+=1;
     }
   },
   components: {
