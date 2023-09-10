@@ -23,6 +23,7 @@ let week1: string[] = ["a", "b", "c"];
 let b: [string, number] = ["B", 1];
 b[0] = b[0].toLowerCase();
 console.log(b);
+console.log(b);
 
 function showError(): never {
   throw new Error();
